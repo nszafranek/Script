@@ -53,22 +53,32 @@ var mod = [
   nullC,
   nullV,
 ];
-var consonant;
-var vowel;
-var semivowel;
-var currentInput = [
+var consonant = "consonant";
+var vowel = "vowel";
+var semivowel = "semivowel";
+var modtype = "modtype";
+var currentInput = {
+  input : [],
+  type : [],
+  modtype : []
+};
+var lastInput = {
   input,
-  type
-];
-var lastInput = [
+  type,
+  modtype
+};
+var nextInput = {
   input,
-  type
-];
-var nextInput = [
+  type,
+  modtype
+};
+var inputChar = {
   input,
-  type
-];
-var modtype
+  type,
+  modtype
+};
+
+var updatedChar = [];
 
 function preload() {
   onset.T = loadImage('img/T-.png');
@@ -113,18 +123,18 @@ function preload() {
   onset.V = loadImage('img/V-.png');
   onset.V1 = loadImage('img/V--.png');
   onset.V2 = loadImage('img/-V-.png');
-  coda.T = loadImage('img/_T.png');
+  coda.T = loadImage('img/_T_.png');
   coda.T1 = loadImage('img/_T_.png');
   coda.T2 = loadImage('img/__T.png');
   coda.D = loadImage('img/__D.png');
-  coda.D1 = loadImage('img/_D.png');
+  coda.D1 = loadImage('img/_D_.png');
   coda.D2 = loadImage('img/__D.png');
   coda.S = loadImage('img/__S.png');
   coda.S1 = loadImage('img/_S_.png');
   coda.S2 = loadImage('img/__S.png');
   coda.Z = loadImage('img/__Z.png');
   coda.Z1 = loadImage('img/_Z_.png');
-  coda.Z2 = loadImage('img/__Z_.png');
+  coda.Z2 = loadImage('img/_Z_.png');
   coda.M = loadImage('img/__M.png');
   coda.M1 = loadImage('img/_M_.png');
   coda.M2 = loadImage('img/__M.png');
@@ -193,150 +203,241 @@ function preload() {
   mod.nullC = loadImage('img/null1.png');
   mod.nullC = loadImage('img/null2.png');
 }
+var textInput;
+var charactersInput = 0;
+
+var finalOutput = "function draw () {";
+var finalOutput2 = "<br>";
+
 
 function setup() {
   createCanvas(displayHeight, displayWidth);
+  background("black");
   input = createInput();
   input.position(20, 65);
 
   button = createButton('submit');
   button.position(input.x + input.width, 65);
-  button.mousePressed(inputText);
+  button.mousePressed(evaluateText);
 
   inputText = createElement('h2', 'Input text and see what happens!');
   inputText.position(20, 5);
 
   function inputText() {
-  var textInput = input.value();
   }
   textAlign(CENTER);
   textSize(50);
 }
 
-function draw() {
-  background("black");
-    var charactersInput = textInput.length;
-    var inputChar = textInput.split();
-    var previousOutput;
-    for (i = 0; i < charactersInput; i++)
-    currentInput.input = inputChar[i];
-    lastInput.input = inputChar[i-1];
-    nextInput.input = inputChar[i+1];
-    var finalOutput = [];
-    var finalOutput2 = [];
-		function() =
-      if (currentInput.input == A || E || O || U || I || Y) {
-        curentInput.type = vowel;
-      }
-      else if (curentInput.input == H || W || J) {
-        curentInput.type = semivowel;
-      }
-      else {
-        currentInput.type = consonant;
-      }
-      if (currentInput.input == semivowel) {
-        if (currentInput.input == h) {
-          modtype = aspirate
+function evaluateText() {
+    updatedChar = [];
+    textInput = input.value();
+    textInput = textInput.toUpperCase();
+    charactersInput = textInput.length;
+      var previousOutput;
+      for (i = 0; i < charactersInput; i++) {
+        inputChar.input = (textInput.charAt(i));
+   			/*if (inputChar.input == "A" || inputChar.input == "E" || inputChar.input == "O" ||inputChar.input ==  "U" || inputChar.input == "I" || inputChar.input == "Y") {
+            updatedChar[i] = inputChar;
+            updatedChar[i].input = inputChar.input;
+            console.log("updatev")
+            updatedChar[i].type = "vowel";
+            console.log("updatelablev")
+            updatedChar[i].modtype = "nullV";
+            console.log("vowel alert");
+            break
+   			}
+        if (inputChar.input == "H") {
+              updatedChar[i] = inputChar;
+              updatedChar[i].input = inputChar.input;
+              updatedChar[i].type = "semivowel";
+              console.log("updatelablesh")
+              updatedChar[i].modtype = "aspirate"
+              break
         }
-        else if (currentInput == j) {
-          modtype = palatal
+        if (inputChar == "J") {
+              updatedChar[i] = inputChar;
+              updatedChar[i].input = inputChar.input;
+              console.log("updatej")
+              updatedChar[i].type = "semivowel";
+              console.log("updatelablesj");
+              updatedChar[i].modtype = "palatal"
+              break
         }
-          else if (currentInput == w) {
-            modtype = labial
+        if (inputChar == "W") {
+              updatedChar[i] = inputChar;
+              updatedChar[i].input = inputChar.input;
+              console.log("updatew")
+              updatedChar[i].type = "semivowel";
+              console.log("updatelablesw")
+              updatedChar[i].modtype = "labial";
         }
-
-      }
-      if (lastInput == null && currentInput.type == consonant) {
-        finalOutput += "image(onset["+ currentInput.input + "])";
-        finalOutput2 += " image(mod.nullC)";
-        if (nextInput == null) {
-          finalOutput += ";";
-          finalOutput2 += ";";
-					eval(finalOutput);
-					eval(finalOutput2);
+        if (inputChar == "B" || inputChar == "C" || inputChar == "D" || inputChar == "F" || inputChar == "G" || inputChar == "K" || inputChar == "L" || inputChar == "M" || inputChar == "N" || inputChar == "P" || inputChar == "Q" || inputChar == "R" || inputChar == "S" || inputChar == "T" || inputChar == "V" || inputChar == "X" || inputChar == "Z") {
+              updatedChar[i] = inputChar;
+              updatedChar[i].input = inputChar.input;
+              console.log("updatec")
+              updatedChar[i].type = "consonant";
+              console.log("updatelablec")
+              updatedChar[i].modtype = "nullC";
+              console.log("consonant found")
         }
-      }
-      else if (lastInput == null && currentInput.type == vowel) {
-        finalOutput += "image(nucleus[" + currentInput.input + "])";
-        finalOutput2 += " image(mod.nullV)";
-        if (nextInput == null) {
-          finalOutput += ";";
-          finalOutput2 += ";";
-					eval(finalOutput);
-					eval(finalOutput2);
-        }
-      }
-      if (lastInput.type == consonant && currentInput[type] == vowel) {
-        previousOutput = finalOutput
-        finalOutput += " image(nucleus[" + currentInput.input + "])";
-        finalOutput2 += " image(mod.nullV)";
-        if (nextInput == null) {
-          finalOutput += ";"
-          finalOutput2 += ";"
-          eval(finalOutput);
-					eval(finalOutput2);
-      }
-      else if (lastInput.type== consonant && curentInput.type == consonant)  {
-        finalOutput = previousOutput
-        finalOutput += "image(nucleus[" + lastInput.input + "1])" + " image(nucleus[" + [currentInput.input] + "2])"
-        finalOutput2 += "image()"
-        finalOutput2 += " image(mod.nullC)";
-        if (nextInput == null) {
-          finalOutput += ";"
-          finalOutput2 += ";"
-          eval(finalOutput);
-					eval(finalOutput2);
-        }
-      }
-      else if (lastInput.type== consonant && currentInput.type == semivowel) {
-        finalOutput2 = previousOutput2
-        finalOutput2 += "image(mod" + [currentInput.input] + ")";
-        if (nextInput == null) {
-          finalOutput += ";"
-          finalOutput2 += ";"
-          eval(finalOutput);
-					eval(finalOutput2);
-        }
-      }
-      else if (lastInput.type== vowel && curentInput.type == consonant)  {
-          finalOutput += " image(nucleus[" +[lastInput.input] +"; image(onset[" + [currentInput.input] +"2])";
-          finalOutput2 += " image(mod.nullC)";
-          if (nextInput == null) {
-            finalOutput += ";"
-            finalOutput2 += ";"
-            eval(finalOutput);
-						eval(finalOutput2);
-          }
-      }
-      else if (lastInput.type== vowel && curentInput.type == consonant && nextInput.type == consonant){
-        finalOutput +=
-        finalOutput2 += "image(mod.nullC)";
-        if (nextInput==null) {
-          finalOutput += ";"
-          finalOutput2 += ";"
-          eval(finalOutput);
-					eval(finalOutput2);
-        }
-
-      }
-      if (curentInput.type == consonant && lastInput.input == curentInput.input) {
-          finalInput += "image(onset[" +currentInput.input + "])";
-          finalInput2 += "image(mod[consonantGem]);"
-          if (nextInput==null) {
-            finalOutput += ";"
-            finalOutput2 += ";"
-						eval(finalOutput);
-						eval(finalOutput2);
-          }
-      }
-      else if (curentInput.type == vowel && lastInput.input == curentInput[input]) {
-          finalInput += "image(onset[" + currentInput.input + "])";
-          finalOutput2 += "image(mod[" + vowelGem + "]");
-          if (nextInput==null) {
-            finalOutput += ";"
-            finalOutput2 += ";"
-            eval(finalOutput);
-						eval(finalOutput2);
-          }
+        */
+        switch (inputChar.input) {
+case "A":
+	          updatedChar[i] = inputChar;
+            updatedChar[i].input = inputChar.input;
+            console.log("updatev")
+            updatedChar[i].type = "vowel";
+            console.log("updatelablev")
+            updatedChar[i].modtype = "nullV";
+            console.log("vowel alert");
+            break;
+case "E":
+	          updatedChar[i] = inputChar;
+            updatedChar[i].input = inputChar.input;
+            console.log("updatev")
+            updatedChar[i].type = "vowel";
+            console.log("updatelablev")
+            updatedChar[i].modtype = "nullV";
+            console.log("vowel alert");
+            break;
+case "I":
+	  updatedChar[i] = inputChar;
+            updatedChar[i].input = inputChar.input;
+            console.log("updatev")
+            updatedChar[i].type = "vowel";
+            console.log("updatelablev")
+            updatedChar[i].modtype = "nullV";
+            console.log("vowel alert");
+            break;
+case "Y":
+  updatedChar[i] = inputChar;
+            updatedChar[i].input = inputChar.input;
+            console.log("updatev")
+            updatedChar[i].type = "vowel";
+            console.log("updatelablev")
+            updatedChar[i].modtype = "nullV";
+            console.log("vowel alert");
+            break;
+case "O":
+  updatedChar[i] = inputChar;
+            updatedChar[i].input = inputChar.input;
+            console.log("updatev")
+            updatedChar[i].type = "vowel";
+            console.log("updatelablev")
+            updatedChar[i].modtype = "nullV";
+            console.log("vowel alert");
+            break;
+case "U":
+  updatedChar[i] = inputChar;
+            updatedChar[i].input = inputChar.input;
+            console.log("updatev")
+            updatedChar[i].type = "vowel";
+            console.log("updatelablev")
+            updatedChar[i].modtype = "nullV";
+            console.log("vowel alert");
+            break;
+case "J":
+	updatedChar[i] = inputChar;
+              updatedChar[i].input = inputChar.input;
+              console.log("updatej")
+              updatedChar[i].type = "semivowel";
+              console.log("updatelablesj");
+              updatedChar[i].modtype = "palatal"
+              break;
+case "W":
+	      updatedChar[i].input = inputChar.input;
+              console.log("updatew")
+              updatedChar[i].type = "semivowel";
+              console.log("updatelablesw")
+              updatedChar[i].modtype = "labial";
+break;
+case "H":
+              updatedChar[i] = inputChar;
+              updatedChar[i].input = inputChar.input;
+              updatedChar[i].type = "semivowel";
+              console.log("updatelablesh")
+              updatedChar[i].modtype = "aspirate"
+              break
+default: updatedChar[i] = inputChar;
+              updatedChar[i].input = inputChar.input;
+              console.log("updatec")
+              updatedChar[i].type = "consonant";
+              console.log("updatelablec")
+              updatedChar[i].modtype = "nullC";
+              console.log("consonant found")
+break;
+}
+        console.log(inputChar.input);
+if (textInput[charactersInput-1].type != undefined && textInput[charactersInput-1].type != undefined) {
+        concatentate();
+        console.log("concatruns")
       }
   }
+}
+  function concatentate() {
+    for (k = 0; k < charactersInput; k++) {
+      currentInput = updatedChar[k];
+      currentInput.input = updatedChar[k];
+      lastInput.input = updatedChar[k-1];
+      nextInput.input = updatedChar[k+1];
+    if (lastInput.input == null && currentInput.type == "consonant") {
+          finalOutput = previousOutput;
+          finalOutput += "image(onset."+ currentInput.input + ")";
+          finalOutput2 += " image(mod.nullC)";
+          console.log("concat1");
+    }
+    if (lastInput.input == null && currentInput.type == "vowel") {
+          finalOutput = previousOutput;
+          finalOutput += "image(nucleus." + currentInput.input + ")";
+          finalOutput2 += " image(mod.nullV)";
+          console.log("concat2");
+    }
+    if (lastInput.type == "consonant" && currentInput[type] == "vowel") {
+          previousOutput = finalOutput;
+          finalOutput += " image(nucleus[" + currentInput.input + "])";
+          finalOutput2 += " image(mod.nullV)";
+          console.log("concat3");
+        }
+    if ((lastInput.type == "consonant") && (currentInput.type == "consonant")) {
+          finalOutput = previousOutput;
+          finalOutput += "image(nucleus[" + lastInput.input + "1])" + " image(nucleus." + [currentInput[k].input] + "2])"
+          finalOutput2 += " image(mod.nullC)";
+          console.log("concat4");
+        }
+    if (lastInput.type == "consonant" && currentInput.type == "semivowel") {
+          finalOutput2 = previousOutput;
+          finalOutput2 += " image(mod." + [currentInput.input] + ")";
+          console.log("concat5");
+        }
+    if (lastInput.type == "vowel" && curentInput.type == "consonant")  {
+            finalOutput += " image(nucleus." + lastInput.input +"; image(onset." + currentInput.input +"])";
+            finalOutput2 += " image(mod.nullC)";
+            console.log("concat6");
+        }
+    if (lastInput.type == "vowel" && curentInput.type == "consonant" && nextInput.type == "consonant"){
+          finalOutput += " image(onset." + currentInput.input + "1) + image(coda[" + nextInput + "2])"
+          finalOutput2 += "image(mod.nullC)";
+          console.log("concat7");
+        }
+    if (currentInput.type == "consonant" && lastInput.input == "currentInput.input") {
+            finalInput += " image(onset." + currentInput.input + ")";
+            finalInput2 += " image(mod.consonantGem);"
+            console.log("concat8");
+        }
+    if (currentInput.type == "vowel" && lastInput.input == "currentInput[input]") {
+            finalInput += " image(onset." + currentInput.input + ")";
+            finalOutput2 += " image(mod." + vowelGem + ")";
+            console.log("concat9")
+      }
+    if (currentInput !== null && nextInput == null ) {
+         finalOutput += ";";
+         finalOutput2 += ";";
+         var finalOutput3 = finalOutput + finalOutput2 + "}";
+         var final = new finalOutputf(finalOutput3);
+         return(final());
+         console.log("Scriptend");
+    }
+    console.log("concatends");
+  }
+}
