@@ -222,8 +222,9 @@ function draw() {
     currentInput.input = inputChar[i];
     lastInput.input = inputChar[i-1];
     nextInput.input = inputChar[i+1];
-    function finalOutput() {};
-    function finalOutput2() {};
+    var finalOutput = [];
+    var finalOutput2 = [];
+		function() =
       if (currentInput.input == A || E || O || U || I || Y) {
         curentInput.type = vowel;
       }
@@ -245,38 +246,37 @@ function draw() {
         }
 
       }
-      if (lastInput == null && currentInput['type'] == consonant) {
-        finalOutput += "image(onset[currentInput.input])";
+      if (lastInput == null && currentInput.type == consonant) {
+        finalOutput += "image(onset["+ currentInput.input + "])";
         finalOutput2 += " image(mod.nullC)";
         if (nextInput == null) {
-          finalOutput += ";"
-          finalOutput2 += ";"
-          finalOutput();
-          finalOutput2();
+          finalOutput += ";";
+          finalOutput2 += ";";
+					eval(finalOutput);
+					eval(finalOutput2);
         }
       }
-      else if (lastInput == null && currentInput['type'] == vowel) {
-        finalOutput += "image(nucleus[currentInput.input])";
+      else if (lastInput == null && currentInput.type == vowel) {
+        finalOutput += "image(nucleus[" + currentInput.input + "])";
         finalOutput2 += " image(mod.nullV)";
         if (nextInput == null) {
-          finalOutput += ";"
-          finalOutput2 += ";"
-          finalOutput();
-          finalOutput2();
+          finalOutput += ";";
+          finalOutput2 += ";";
+					eval(finalOutput);
+					eval(finalOutput2);
         }
       }
-      if (lastInput['type'] == consonant && currentInput[type] == vowel) {
+      if (lastInput.type == consonant && currentInput[type] == vowel) {
         previousOutput = finalOutput
-        finalOutput += " image(nucleus" + [currentInput.input] + ")";
+        finalOutput += " image(nucleus[" + currentInput.input + "])";
         finalOutput2 += " image(mod.nullV)";
         if (nextInput == null) {
           finalOutput += ";"
           finalOutput2 += ";"
-          finalOutput();
-          finalOutput2();
-        }
+          eval(finalOutput);
+					eval(finalOutput2);
       }
-      else if (lastInput['type'] == consonant && curentInput['type'] == consonant)  {
+      else if (lastInput.type== consonant && curentInput.type == consonant)  {
         finalOutput = previousOutput
         finalOutput += "image(nucleus[" + lastInput.input + "1])" + " image(nucleus[" + [currentInput.input] + "2])"
         finalOutput2 += "image()"
@@ -284,59 +284,59 @@ function draw() {
         if (nextInput == null) {
           finalOutput += ";"
           finalOutput2 += ";"
-          finalOutput()
-          finalOutput2()
+          eval(finalOutput);
+					eval(finalOutput2);
         }
       }
-      else if (lastInput['type'] == consonant && currentInput['type'] == semivowel) {
+      else if (lastInput.type== consonant && currentInput.type == semivowel) {
         finalOutput2 = previousOutput2
         finalOutput2 += "image(mod" + [currentInput.input] + ")";
         if (nextInput == null) {
           finalOutput += ";"
           finalOutput2 += ";"
-          finalOutput();
-          finalOutput2();
+          eval(finalOutput);
+					eval(finalOutput2);
         }
       }
-      else if (lastInput['type'] == vowel && curentInput['type'] == consonant)  {
+      else if (lastInput.type== vowel && curentInput.type == consonant)  {
           finalOutput += " image(nucleus[" +[lastInput.input] +"; image(onset[" + [currentInput.input] +"2])";
           finalOutput2 += " image(mod.nullC)";
           if (nextInput == null) {
             finalOutput += ";"
             finalOutput2 += ";"
-            finalOutput();
-            finalOutput2();
+            eval(finalOutput);
+						eval(finalOutput2);
           }
       }
-      else if (lastInput['type'] == vowel && curentInput['type'] == consonant && nextInput.type == consonant){
+      else if (lastInput.type== vowel && curentInput.type == consonant && nextInput.type == consonant){
         finalOutput +=
         finalOutput2 += "image(mod.nullC)";
         if (nextInput==null) {
           finalOutput += ";"
           finalOutput2 += ";"
-          finalOutput();
-          finalOutput2();
+          eval(finalOutput);
+					eval(finalOutput2);
         }
 
       }
-      if (curentInput['type'] == consonant && lastInput['input'] == curentInput.input) {
-          image(onset[currentInput.input]);
-          image(mod[consonantGem]);
+      if (curentInput.type == consonant && lastInput.input == curentInput.input) {
+          finalInput += "image(onset[" +currentInput.input + "])";
+          finalInput2 += "image(mod[consonantGem]);"
           if (nextInput==null) {
             finalOutput += ";"
             finalOutput2 += ";"
-            finalOutput();
-            finalOutput2();
+						eval(finalOutput);
+						eval(finalOutput2);
           }
       }
-      else if (curentInput['type'] == vowel && lastInput['input'] == curentInput[input]) {
-          image(onset[currentInput.input]);
-          image(mod[vowelGem]);
+      else if (curentInput.type == vowel && lastInput.input == curentInput[input]) {
+          finalInput += "image(onset[" + currentInput.input + "])";
+          finalOutput2 += "image(mod[" + vowelGem + "]");
           if (nextInput==null) {
             finalOutput += ";"
             finalOutput2 += ";"
-            finalOutput();
-            finalOutput2();
+            eval(finalOutput);
+						eval(finalOutput2);
           }
       }
   }
