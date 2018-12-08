@@ -234,10 +234,44 @@ function evaluateText() {
     textInput = input.value();
     textInput = textInput.toUpperCase();
     charactersInput = textInput.length;
+    var y = charactersInput.valueOf();
       var previousOutput;
-      for (i = 0; i < charactersInput; i++) {
+      for (i = 0; i < (charactersInput + 1); i++) {
         inputChar.input = (textInput.charAt(i));
-   			/*if (inputChar.input == "A" || inputChar.input == "E" || inputChar.input == "O" ||inputChar.input ==  "U" || inputChar.input == "I" || inputChar.input == "Y") {
+  if (i == y) {
+    concatentate();
+    console.log("concatruns")
+  }
+  else {
+        switch (inputChar.input) {
+          case "A":
+	          updatedChar[i] = inputChar;
+            updatedChar[i].input = inputChar.input;
+            console.log("updatev")
+            updatedChar[i].type = "vowel";
+            console.log("updatelablev")
+            updatedChar[i].modtype = "nullV";
+            console.log("vowel alert");
+            break;
+          case "E":
+	          updatedChar[i] = inputChar;
+            updatedChar[i].input = inputChar.input;
+            console.log("updatev")
+            updatedChar[i].type = "vowel";
+            console.log("updatelablev")
+            updatedChar[i].modtype = "nullV";
+            console.log("vowel alert");
+            break;
+          case "I":
+	          updatedChar[i] = inputChar;
+            updatedChar[i].input = inputChar.input;
+            console.log("updatev")
+            updatedChar[i].type = "vowel";
+            console.log("updatelablev")
+            updatedChar[i].modtype = "nullV";
+            console.log("vowel alert");
+            break;
+          case "Y":
             updatedChar[i] = inputChar;
             updatedChar[i].input = inputChar.input;
             console.log("updatev")
@@ -245,46 +279,9 @@ function evaluateText() {
             console.log("updatelablev")
             updatedChar[i].modtype = "nullV";
             console.log("vowel alert");
-            break
-   			}
-        if (inputChar.input == "H") {
-              updatedChar[i] = inputChar;
-              updatedChar[i].input = inputChar.input;
-              updatedChar[i].type = "semivowel";
-              console.log("updatelablesh")
-              updatedChar[i].modtype = "aspirate"
-              break
-        }
-        if (inputChar == "J") {
-              updatedChar[i] = inputChar;
-              updatedChar[i].input = inputChar.input;
-              console.log("updatej")
-              updatedChar[i].type = "semivowel";
-              console.log("updatelablesj");
-              updatedChar[i].modtype = "palatal"
-              break
-        }
-        if (inputChar == "W") {
-              updatedChar[i] = inputChar;
-              updatedChar[i].input = inputChar.input;
-              console.log("updatew")
-              updatedChar[i].type = "semivowel";
-              console.log("updatelablesw")
-              updatedChar[i].modtype = "labial";
-        }
-        if (inputChar == "B" || inputChar == "C" || inputChar == "D" || inputChar == "F" || inputChar == "G" || inputChar == "K" || inputChar == "L" || inputChar == "M" || inputChar == "N" || inputChar == "P" || inputChar == "Q" || inputChar == "R" || inputChar == "S" || inputChar == "T" || inputChar == "V" || inputChar == "X" || inputChar == "Z") {
-              updatedChar[i] = inputChar;
-              updatedChar[i].input = inputChar.input;
-              console.log("updatec")
-              updatedChar[i].type = "consonant";
-              console.log("updatelablec")
-              updatedChar[i].modtype = "nullC";
-              console.log("consonant found")
-        }
-        */
-        switch (inputChar.input) {
-case "A":
-	          updatedChar[i] = inputChar;
+            break;
+          case "O":
+            updatedChar[i] = inputChar;
             updatedChar[i].input = inputChar.input;
             console.log("updatev")
             updatedChar[i].type = "vowel";
@@ -292,8 +289,8 @@ case "A":
             updatedChar[i].modtype = "nullV";
             console.log("vowel alert");
             break;
-case "E":
-	          updatedChar[i] = inputChar;
+          case "U":
+            updatedChar[i] = inputChar;
             updatedChar[i].input = inputChar.input;
             console.log("updatev")
             updatedChar[i].type = "vowel";
@@ -301,80 +298,41 @@ case "E":
             updatedChar[i].modtype = "nullV";
             console.log("vowel alert");
             break;
-case "I":
-	  updatedChar[i] = inputChar;
-            updatedChar[i].input = inputChar.input;
-            console.log("updatev")
-            updatedChar[i].type = "vowel";
-            console.log("updatelablev")
-            updatedChar[i].modtype = "nullV";
-            console.log("vowel alert");
-            break;
-case "Y":
-  updatedChar[i] = inputChar;
-            updatedChar[i].input = inputChar.input;
-            console.log("updatev")
-            updatedChar[i].type = "vowel";
-            console.log("updatelablev")
-            updatedChar[i].modtype = "nullV";
-            console.log("vowel alert");
-            break;
-case "O":
-  updatedChar[i] = inputChar;
-            updatedChar[i].input = inputChar.input;
-            console.log("updatev")
-            updatedChar[i].type = "vowel";
-            console.log("updatelablev")
-            updatedChar[i].modtype = "nullV";
-            console.log("vowel alert");
-            break;
-case "U":
-  updatedChar[i] = inputChar;
-            updatedChar[i].input = inputChar.input;
-            console.log("updatev")
-            updatedChar[i].type = "vowel";
-            console.log("updatelablev")
-            updatedChar[i].modtype = "nullV";
-            console.log("vowel alert");
-            break;
-case "J":
-	updatedChar[i] = inputChar;
+          case "J":
+	            updatedChar[i] = inputChar;
               updatedChar[i].input = inputChar.input;
               console.log("updatej")
               updatedChar[i].type = "semivowel";
               console.log("updatelablesj");
               updatedChar[i].modtype = "palatal"
               break;
-case "W":
-	      updatedChar[i].input = inputChar.input;
+          case "W":
+	            updatedChar[i].input = inputChar.input;
               console.log("updatew")
               updatedChar[i].type = "semivowel";
               console.log("updatelablesw")
               updatedChar[i].modtype = "labial";
-break;
-case "H":
+              break;
+          case "H":
               updatedChar[i] = inputChar;
               updatedChar[i].input = inputChar.input;
               updatedChar[i].type = "semivowel";
               console.log("updatelablesh")
               updatedChar[i].modtype = "aspirate"
               break
-default: updatedChar[i] = inputChar;
+          default: updatedChar[i] = inputChar;
               updatedChar[i].input = inputChar.input;
               console.log("updatec")
               updatedChar[i].type = "consonant";
               console.log("updatelablec")
               updatedChar[i].modtype = "nullC";
               console.log("consonant found")
-break;
-}
+              break;
+      }
+    }
         console.log(inputChar.input);
-if (textInput[charactersInput-1].type != undefined && textInput[charactersInput-1].type != undefined) {
-        concatentate();
-        console.log("concatruns")
       }
   }
-}
   function concatentate() {
     for (k = 0; k < charactersInput; k++) {
       currentInput = updatedChar[k];
@@ -382,7 +340,7 @@ if (textInput[charactersInput-1].type != undefined && textInput[charactersInput-
       lastInput.input = updatedChar[k-1];
       nextInput.input = updatedChar[k+1];
     if (lastInput.input == null && currentInput.type == "consonant") {
-          finalOutput = previousOutput;
+          previousOutput = finalOutput;
           finalOutput += "image(onset."+ currentInput.input + ")";
           finalOutput2 += " image(mod.nullC)";
           console.log("concat1");
